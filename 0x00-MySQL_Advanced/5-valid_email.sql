@@ -1,4 +1,4 @@
---tirara email update trigger
+-- tirara email update trigger
 
 DELIMITER //
 CREATE TRIGGER reset_email BEFORE UPDATE ON users
