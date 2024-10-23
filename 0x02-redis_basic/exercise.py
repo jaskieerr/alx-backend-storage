@@ -14,7 +14,7 @@ class Cache:
     '''
     def __init__(self):
         '''constructor'''
-        self._redis = redis.redis()
+        self._redis = redis.Redis()
         self._redis.flushdb()
 
     def store(self, data: Union[str, bytes, int, float]) -> str:
