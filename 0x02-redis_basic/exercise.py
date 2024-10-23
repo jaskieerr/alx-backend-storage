@@ -22,3 +22,22 @@ class Cache:
         keyy = str(uuid.uuid4)
         self._redis.set(keyy, data)
         return keyy
+
+    def get(
+            self,
+            key: str,
+            fn: Callable = None,
+            ) -> Union[str, bytes, int, float]:
+        '''
+        from bytes to str
+        '''
+        vall = self._redis.get(key)
+        return fn(vall) if fn is not None else vall
+
+    def get_str(self, key: str) -> str:
+        '''auto parameterizing'''
+        return self.get(key, lambda x: x.decode('utf-8'))
+
+    def get_int(self, key: str) -> int:
+        '''auto parameterizing'''
+        return self.get(key, lambda x: int(x))
