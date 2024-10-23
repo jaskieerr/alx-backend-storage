@@ -23,14 +23,14 @@ def count_calls(method: Callable) -> Callable:
 def call_history(method: Callable) -> Callable:
     '''storing callskinda'''
     input_k = method.__qualname__ + ":inputs"
-    output-k = method.__qualname__ + ":outputs"
+    output_k = method.__qualname__ + ":outputs"
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         '''yadi yadi yada'''
         self._redis.rpush(input_k, str(args))
         res = method(self, *args, **kwargs)
-        self._redis.rpush(output-k, str(res))
+        self._redis.rpush(output_k, str(res))
         return res
 
     return wrapper
